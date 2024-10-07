@@ -5,6 +5,7 @@ import Realizations from './components/Realizations';
 import Models from './components/Models';
 import Appointment from './components/Appointment';
 import Testimonials from './components/Testimonials';
+import Contact from './components/Contact';
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
                 <Route path="/models" element={<Models />} />
                 <Route path="/appointment" element={<Appointment />} />
                 <Route path="/testimonials" element={<Testimonials />} />
+                <Route path="/contact" element={<Contact />} />
             </Routes>
         </Router>
     );

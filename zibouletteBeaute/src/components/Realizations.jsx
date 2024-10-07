@@ -1,10 +1,10 @@
 function Realizations() {
 
-    return (
-      <>
-        <h1>Hello!</h1>
-      </>
-    )
-  }
-  
-  export default Realizations
+  return (
+    <>
+      <h1>Hello Realizations!</h1>
+    </>
+  )
+}
+
+export default Realizations
