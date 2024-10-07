@@ -1,30 +1,40 @@
-// src/components/Appointment.jsx
 import { useState, useEffect } from 'react';
 import './Appointment.css';
-import { addDays, subDays, format } from 'date-fns';
+import { addMonths, subMonths, format, getDaysInMonth, startOfMonth, addDays } from 'date-fns';
 
 const availableDays = ["2024-10-10", "2024-10-12", "2024-10-15", "2024-10-18"];
 const availableTimes = ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00"];
 
 const Appointment = () => {
-    const [currentDate, setCurrentDate] = useState(new Date());
+    const [currentMonth, setCurrentMonth] = useState(new Date()); 
     const [selectedDay, setSelectedDay] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
-    const [daysOfWeek, setDaysOfWeek] = useState([]);
+    const [daysInMonth, setDaysInMonth] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         phone: ''
     });
-    const [errorMessage, setErrorMessage] = useState(''); // Nouveau état pour les messages d'erreur
-    const [showErrorPopup, setShowErrorPopup] = useState(false); // État pour afficher/masquer le pop-up d'erreur
+    const [errorMessage, setErrorMessage] = useState('');
+    const [showErrorPopup, setShowErrorPopup] = useState(false);
+    const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
 
     useEffect(() => {
-        const startOfWeek = subDays(currentDate, currentDate.getDay());
-        const newWeek = Array.from({ length: 7 }, (_, i) => addDays(startOfWeek, i));
-        setDaysOfWeek(newWeek);
-    }, [currentDate]);
+        const days = generateDaysInMonth(currentMonth);
+        setDaysInMonth(days);
+    }, [currentMonth]);
+
+    const generateDaysInMonth = (month) => {
+        const days = [];
+        const start = startOfMonth(month);
+        const daysCount = getDaysInMonth(month);
+
+        for (let i = 0; i < daysCount; i++) {
+            days.push(addDays(start, i));
+        }
+        return days;
+    };
 
     const handleDayClick = (day) => {
         if (availableDays.includes(format(day, "yyyy-MM-dd"))) {
@@ -42,7 +52,7 @@ const Appointment = () => {
             setShowForm(true);
         } else {
             setErrorMessage("Veuillez sélectionner un jour et une heure.");
-            setShowErrorPopup(true); // Afficher le pop-up d'erreur
+            setShowErrorPopup(true);
         }
     };
 
@@ -53,18 +63,21 @@ const Appointment = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         setShowForm(false);
-        alert(`Rendez-vous confirmé pour ${format(selectedDay, "dd-MM-yyyy")} à ${selectedTime}.\nConfirmation envoyée à : ${formData.email}`);
-        setFormData({ name: '', email: '', phone: '' });
+        setShowConfirmationPopup(true);
+    };
+
+    const closeConfirmationPopup = () => {
+        setShowConfirmationPopup(false);
         setSelectedDay(null);
         setSelectedTime(null);
     };
 
-    const goToNextWeek = () => {
-        setCurrentDate(addDays(currentDate, 7));
+    const goToNextMonth = () => {
+        setCurrentMonth(addMonths(currentMonth, 1));
     };
 
-    const goToPreviousWeek = () => {
-        setCurrentDate(subDays(currentDate, 7));
+    const goToPreviousMonth = () => {
+        setCurrentMonth(subMonths(currentMonth, 1));
     };
 
     const closeErrorPopup = () => {
@@ -77,13 +90,13 @@ const Appointment = () => {
             <p>Sélectionnez un jour et une heure libre pour réserver votre créneau.</p>
 
             <div className="navigation">
-                <button onClick={goToPreviousWeek}>Semaine précédente</button>
-                <span>{format(currentDate, "MMMM yyyy")}</span>
-                <button onClick={goToNextWeek}>Semaine suivante</button>
+                <button onClick={goToPreviousMonth}>Mois précédent</button>
+                <span>{format(currentMonth, "MMMM yyyy")}</span>
+                <button onClick={goToNextMonth}>Mois suivant</button>
             </div>
 
             <div className="days-container">
-                {daysOfWeek.map((day, index) => {
+                {daysInMonth.map((day, index) => {
                     const formattedDay = format(day, "yyyy-MM-dd");
                     const isAvailable = availableDays.includes(formattedDay);
 
@@ -91,7 +104,7 @@ const Appointment = () => {
                         <button
                             key={index}
                             className={`day-button ${isAvailable ? 'available' : 'unavailable'} ${selectedDay === day ? 'active' : ''}`}
-                            onClick={() => isAvailable && handleDayClick(day)}
+                            onClick={() => handleDayClick(day)}
                         >
                             {format(day, "dd/MM")}
                         </button>
@@ -168,6 +181,18 @@ const Appointment = () => {
                         <h2>Erreur</h2>
                         <p>{errorMessage}</p>
                         <button onClick={closeErrorPopup}>Fermer</button>
+                    </div>
+                </div>
+            )}
+
+            {/* Pop-up de confirmation */}
+            {showConfirmationPopup && (
+                <div className="modal-overlay">
+                    <div className="modal">
+                        <h2>Rendez-vous confirmé</h2>
+                        <p>Votre rendez-vous pour le <strong>{format(selectedDay, "dd-MM-yyyy")}</strong> à <strong>{selectedTime}</strong> est confirmé.</p>
+                        <p>Une confirmation a été envoyée à : <strong>{formData.email}</strong></p>
+                        <button onClick={closeConfirmationPopup}>Fermer</button>
                     </div>
                 </div>
             )}
