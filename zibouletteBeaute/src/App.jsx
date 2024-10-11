@@ -6,6 +6,9 @@ import Models from './components/Models';
 import Appointment from './components/Appointment';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
+import 'slick-carousel/slick/slick.css'; 
+import 'slick-carousel/slick/slick-theme.css';
+
 
 const App = () => {
     return (

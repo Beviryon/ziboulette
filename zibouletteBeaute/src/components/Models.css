@@ -1,0 +1,291 @@
+.modeles-page-container {
+    padding: 40px;
+    background-color: #f8f9fa;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+.hero-section .titre {
+    color: red;
+    padding: 22px;
+    animation: customAni 9s ease 0s infinite normal none;
+}
+
+/* Copy this code after the above code */
+@keyframes customAni {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+  
+    10%,
+    30%,
+    50%,
+    70% {
+      transform: translateY(-8px);
+    }
+  
+    20%,
+    40%,
+    60% {
+      transform: translateY(8px);
+    }
+  
+    80% {
+      transform: translateY(6.4px);
+    }
+  
+    90% {
+      transform: translateY(-6.4px);
+    }
+  }
+  
+
+.featured-models-carousel .phares {
+    color: #0056b3;
+    position: relative;
+    bottom: 20px;
+    font-size: 3rem;
+}
+
+.search-bar {
+    width: 60%;
+    padding: 12px;
+    margin-bottom: 30px;
+    border: 2px solid #ced4da;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+}
+
+.categories-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.category-button {
+    margin: 0 15px;
+    padding: 12px 25px;
+    border-radius: 50px;
+    border: none;
+    background-color: #e9ecef;
+    color: #495057;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.category-button:hover {
+    background-color: #007bff;
+    color: white;
+    transform: translateY(-5px);
+}
+
+.category-button.active {
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.modeles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 0 20px;
+}
+
+.modele-card {
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    cursor: pointer;
+}
+
+.modele-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.modele-image {
+    width: 100%;
+    height: 200px; /* Hauteur fixe pour toutes les images */
+    object-fit: cover; /* S'assure que l'image remplit la carte */
+    border-radius: 10px; /* Ajout d'arrondis pour les images */
+    transition: transform 0.3s ease;
+}
+
+.modele-card:hover .modele-image {
+    transform: scale(1.05);
+}
+
+.modele-details {
+    padding: 20px;
+}
+
+.modele-price {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 10px;
+}
+
+.reserve-button {
+    margin-top: 15px;
+    padding: 12px 25px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.reserve-button:hover {
+    background-color: #0056b3;
+}
+
+.pagination {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.page-button {
+    margin: 0 10px;
+    padding: 12px 18px;
+    border-radius: 50px;
+    border: none;
+    background-color: #e9ecef;
+    color: #495057;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.page-button:hover {
+    background-color: #007bff;
+    color: white;
+    transform: translateY(-3px);
+}
+
+.page-button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Styles de la modal d'image */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close-button:hover {
+    color: #f00;
+}
+
+/* Styles pour le carrousel */
+.featured-models-carousel {
+    margin: 2px auto;
+    text-align: center;
+}
+
+/* Styles pour chaque élément du carrousel */
+.carousel-item {
+    margin:0 3px;
+}
+
+/* Styles pour les images du carrousel */
+.carousel-image {
+    width: 380px; 
+    height: 250px; 
+    object-fit: cover;
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour profondeur */
+}
+
+/* Styles des points de pagination */
+.slick-dots {
+    bottom: 10px; /* Position des points */
+}
+
+.slick-dots li button:before {
+    font-size: 17px; /* Taille des points */
+    color: #fff; /* Couleur des points inactifs */
+    opacity: 0.5; /* Opacité des points inactifs */
+}
+
+.slick-dots li.slick-active button:before {
+    color: #ff6f61; /* Couleur des points actifs */
+    opacity: 1; /* Opacité des points actifs */
+}
+
+/* Styles pour les flèches de navigation */
+.slick-prev,
+.slick-next {
+    font-size: 24px; /* Taille des flèches */
+    color: #fff; /* Couleur des flèches */
+    z-index: 1; /* Pour qu'elles soient au-dessus du contenu */
+    transition: color 0.3s ease; /* Transition pour les couleurs au survol */
+}
+
+.slick-prev {
+    left: 10px; /* Position de la flèche gauche */
+}
+
+.slick-next {
+    right: 10px; /* Position de la flèche droite */
+}
+
+/* Styles au survol pour les flèches de navigation */
+.slick-prev:hover,
+.slick-next:hover {
+    color: #ff6f61; /* Couleur au survol */
+}
+
+/* Styles pour le conteneur principal du carrousel */
+.slick-slider {
+    position: relative; /* Nécessaire pour le positionnement des flèches */
+}
