@@ -288,9 +288,45 @@ const ModelesPage = () => {
         </p>
       </section>
 
-      {/* Pied de page */}
-      <footer className="footer">
-        <p>�� 2024 - Tous droits réservés</p>
+       {/* Pied de page modernisé */}
+       <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-section about">
+            <h3>À propos de nous</h3>
+            <p>
+              Nails-Ziboulette est votre destination pour des ongles parfaits.
+              Nous offrons une variété de services de manucure et de pédicure
+              pour répondre à tous vos besoins.
+            </p>
+          </div>
+          <div className="footer-section links">
+            <h3>Liens utiles</h3>
+            <ul>
+              <li><a href="/">Accueil</a></li>
+              <li><a href="/services">Services</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div className="footer-section contact">
+            <h3>Contactez-nous</h3>
+            <p>Email: contact@nails-ziboulette.com</p>
+            <p>Téléphone: +33 1 00 00 00 00</p>
+            <p>Adresse: 123 Rue de la Beauté, 75000 Paris</p>
+          </div>
+          <div className="footer-section social">
+            <h3>Suivez-nous</h3>
+            <div className="social-icons">
+              <a href="#"><i className="fab fa-facebook-f"></i></a>
+              <a href="#"><i className="fab fa-twitter"></i></a>
+              <a href="#"><i className="fab fa-instagram"></i></a>
+              <a href="#"><i className="fab fa-pinterest"></i></a>
+            </div>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; 2024 Nails-Ziboulette. Tous droits réservés.</p>
+        </div>
       </footer>
     </div>
   );
