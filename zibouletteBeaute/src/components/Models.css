@@ -44,8 +44,14 @@
 .featured-models-carousel .phares {
     color: #0056b3;
     position: relative;
-    bottom: 20px;
+    bottom: 2px;
     font-size: 3rem;
+}
+
+.paragraphe-1 {
+    color: #101010;
+    font-size: 23px;
+    margin-bottom: 30px;
 }
 
 .search-bar {
